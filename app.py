@@ -205,7 +205,7 @@ class App(tk.Tk):
         ).start()
 
     def _ocr_worker(self, dir_path: str, exhibition: str, overwrite: bool) -> None:
-        import diary_ocr
+        from core import diary_ocr
 
         self._log_separator("OCR開始")
         old_stdout = sys.stdout
@@ -243,7 +243,7 @@ class App(tk.Tk):
         ).start()
 
     def _json_worker(self, md_path: str, json_out: str | None) -> None:
-        import md_to_json
+        from core import md_to_json
 
         self._log_separator("JSON変換開始")
         old_stdout = sys.stdout
