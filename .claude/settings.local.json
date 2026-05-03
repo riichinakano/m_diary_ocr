@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(pip list *)",
+      "Bash(python -c ' *)",
+      "Bash(python -m py_compile diary_ocr.py)",
+      "Bash(python -m py_compile json_to_excel.py)",
+      "Bash(python json_to_excel.py --json test_diary.json --visitors visitors.xlsx --goods goods.xlsx)"
+    ]
+  }
+}

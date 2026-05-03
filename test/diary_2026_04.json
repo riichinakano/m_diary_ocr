@@ -1,0 +1,897 @@
+[
+  {
+    "date": "2020-04-01",
+    "day_of_week": "水",
+    "weather": null,
+    "staff": [
+      "館長",
+      "中垣"
+    ],
+    "exhibition": "1_春季展_前期",
+    "notes": {
+      "am": "洋画室「山上の湖」前の電球取替。館内消毒。郵便なし。10:00 お客様より版画の展示があるかお問い合せのTELあり。(版画がお好きで、何件か確認のお電話を下さっている旨です) 11:00 ご来館下さいました。",
+      "pm": "郵便なし。館内消毒。"
+    },
+    "visitors": [
+      {
+        "code": "A：一般",
+        "category": "一般",
+        "discount": "HP",
+        "count": 4
+      },
+      {
+        "code": "B：シニア",
+        "category": "シニア",
+        "discount": null,
+        "count": 7
+      },
+      {
+        "code": "B：シニア",
+        "category": "シニア",
+        "discount": "HP",
+        "count": 2
+      },
+      {
+        "code": "D：小中学生",
+        "category": "小中学生（無料）",
+        "discount": "HP",
+        "count": 1
+      }
+    ],
+    "visitors_total": 13,
+    "cumulative_excluding_free": 13,
+    "cumulative_including_free": 14,
+    "sales": [
+      {
+        "code": "P：絵葉書",
+        "name": "絵葉書（＠100円）",
+        "count": 11
+      }
+    ]
+  },
+  {
+    "date": "2020-04-02",
+    "day_of_week": "木",
+    "weather": "晴/曇",
+    "staff": [
+      "副館長",
+      "御堂"
+    ],
+    "exhibition": "1_春季展_前期",
+    "notes": {
+      "am": "館内消毒、日経エクスプレス・富士シリシア化学",
+      "pm": "郵便なし、館内消毒"
+    },
+    "visitors": [
+      {
+        "code": "A：一般",
+        "category": "一般",
+        "discount": null,
+        "count": 1
+      },
+      {
+        "code": "A：一般",
+        "category": "一般",
+        "discount": null,
+        "count": 1
+      },
+      {
+        "code": "B：シニア",
+        "category": "シニア",
+        "discount": null,
+        "count": 4
+      },
+      {
+        "code": "B：シニア",
+        "category": "シニア（割引）",
+        "discount": "HP",
+        "count": 1
+      },
+      {
+        "code": "B：シニア",
+        "category": "シニア（割引）",
+        "discount": "JAF",
+        "count": 1
+      },
+      {
+        "code": "C：学生",
+        "category": "学生",
+        "discount": null,
+        "count": 1
+      }
+    ],
+    "visitors_total": 9,
+    "cumulative_excluding_free": 22,
+    "cumulative_including_free": 23,
+    "sales": [
+      {
+        "code": "P：図録",
+        "name": "30周年図録",
+        "count": 1
+      },
+      {
+        "code": "P：絵葉書",
+        "name": "絵葉書（＠100円）",
+        "count": 6
+      }
+    ]
+  },
+  {
+    "date": "2020-04-04",
+    "day_of_week": "土",
+    "weather": "曇",
+    "staff": [
+      "館長",
+      "吉田"
+    ],
+    "exhibition": "1_春季展_前期",
+    "notes": {
+      "am": "館内消費\n郵便) 富士シリシア化学株式会社, 公財・公益法人協会, 民間公益活動推進センター\nゆうメール) 東大阪市民美術センター, アメリカン・エキスプレス\nレターパック) 久万美術館\n佐川急便) ムジークフェストなら",
+      "pm": "JWマリオットホテル 瀧矢様ご来館。研究室へお通しする。※現在退職されてフリーランス 15:00頃お帰りになる。\n館内消毒"
+    },
+    "visitors": [
+      {
+        "code": "A：一般",
+        "category": "一般",
+        "discount": null,
+        "count": 3
+      },
+      {
+        "code": "A：一般",
+        "category": "一般（割引）",
+        "discount": "ベネフィット",
+        "count": 2
+      },
+      {
+        "code": "B：シニア",
+        "category": "シニア",
+        "discount": null,
+        "count": 3
+      },
+      {
+        "code": "B：シニア",
+        "category": "シニア（割引）",
+        "discount": "JAF",
+        "count": 2
+      },
+      {
+        "code": "E：身障者",
+        "category": "身障者",
+        "discount": null,
+        "count": 1
+      },
+      {
+        "code": "D：小中学生",
+        "category": "小中学生（割引）",
+        "discount": "ベネフィット",
+        "count": 1
+      }
+    ],
+    "visitors_total": 12,
+    "cumulative_excluding_free": 39,
+    "cumulative_including_free": 41,
+    "sales": []
+  },
+  {
+    "date": "2020-04-21",
+    "day_of_week": "火",
+    "weather": "晴",
+    "staff": [
+      "文",
+      "御堂"
+    ],
+    "exhibition": "1_春季展_前期",
+    "notes": {
+      "am": "館内消毒; 郵便: SMBC日興証券, 三菱UFJモルガン・スタンレー証券 (ハガキ封書各1通), BBプラザ美術館, 日本年金機構, 同志社大学博物館学芸員、美学美術学会 (封書2通); ゆうメール: 新日本法規出版株式会社, 朝日友の会大阪事務局, 結のまち推進四番屋運営委員会 (封書2通), 読売奈良ライフ, 静岡県立美術館, 奈良県立万葉文化館; 飛脚メール: 根津美術館, 島根県立美術館",
+      "pm": "郵便: セコムクレジット株式会社, NTTファイナンス, 京都国立近代美術館, 樂美術館; クロネコDM便（メール）: 奈良文化財研究所, 清善株式会社"
+    },
+    "visitors": [
+      {
+        "code": "A：一般",
+        "category": "一般",
+        "discount": null,
+        "count": 3
+      }
+    ],
+    "visitors_total": 3,
+    "cumulative_excluding_free": 92,
+    "cumulative_including_free": 97,
+    "sales": [
+      {
+        "code": "P：絵葉書",
+        "name": "絵葉書（＠100円）",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "date": "2020-04-23",
+    "day_of_week": "木",
+    "weather": "晴",
+    "staff": [
+      "副館長",
+      "御堂"
+    ],
+    "exhibition": "1_春季展_前期",
+    "notes": {
+      "am": "館内消毒, 郵便なし",
+      "pm": "郵便: 関西電力株式会社, 日本年金機構, SMBC日興証券; ゆうメール: 大阪市立美術館; クロネコゆうメール: ヤマト運輸御所営業所; 館内消毒"
+    },
+    "visitors": [
+      {
+        "code": "A：一般",
+        "category": "一般",
+        "discount": null,
+        "count": 2
+      }
+    ],
+    "visitors_total": 2,
+    "cumulative_excluding_free": 99,
+    "cumulative_including_free": 104,
+    "sales": []
+  },
+  {
+    "date": "2020-04-26",
+    "day_of_week": "日",
+    "weather": "晴れのち曇り",
+    "staff": [
+      "御堂"
+    ],
+    "exhibition": "1_春季展_前期",
+    "notes": {
+      "am": "AM ・館内消毒 ・郵便なし",
+      "pm": "PM ・館長が新しいシャチハタ スタンプ台を持ってきて下さいました。(な) 14:50 ・庭の一隅アートライブラリーの部屋に入っていらっしゃるお客様より “画集の中の写真は撮ってよろしいでしょうか” とお尋ね有。 館長に対応して頂く、 （画集の中の写真はご遠慮いただく）(な)(な) 3〜4年ぐらい前に30周年ではない作品展をご購入された方だと思います ・郵便なし ・館内消毒"
+    },
+    "visitors": [
+      {
+        "code": "A：一般",
+        "category": "一般",
+        "discount": null,
+        "count": 4
+      },
+      {
+        "code": "B：シニア",
+        "category": "シニア",
+        "discount": null,
+        "count": 1
+      },
+      {
+        "code": "A：一般",
+        "category": "一般（割引）",
+        "discount": "JAF",
+        "count": 1
+      }
+    ],
+    "visitors_total": 6,
+    "cumulative_excluding_free": 116,
+    "cumulative_including_free": 121,
+    "sales": []
+  },
+  {
+    "date": "2023-04-03",
+    "day_of_week": "金",
+    "weather": "晴",
+    "staff": [
+      "館長",
+      "中垣"
+    ],
+    "exhibition": "1_春季展_前期",
+    "notes": {
+      "am": "AM：館内消毒。郵便なし。10:30 近畿環境衛生センター 浄化槽の点検に来られました。11:10 館長立ち合い 異常なし・点検報告書受取。",
+      "pm": "PM：郵便なし。館内消毒。"
+    },
+    "visitors": [
+      {
+        "code": "A：一般",
+        "category": "一般（割引）",
+        "discount": "JAF",
+        "count": 1
+      },
+      {
+        "code": "B：シニア",
+        "category": "シニア",
+        "discount": null,
+        "count": 3
+      },
+      {
+        "code": "B：シニア",
+        "category": "シニア（割引）",
+        "discount": "HP",
+        "count": 1
+      },
+      {
+        "code": "F：招待券",
+        "category": "招待券",
+        "discount": null,
+        "count": 1
+      }
+    ],
+    "visitors_total": 6,
+    "cumulative_excluding_free": 27,
+    "cumulative_including_free": 29,
+    "sales": [
+      {
+        "code": "P：絵葉書",
+        "name": "絵葉書（＠100円）",
+        "count": 4
+      }
+    ]
+  },
+  {
+    "date": "2023-04-11",
+    "day_of_week": "土",
+    "weather": "晴",
+    "staff": [
+      "館長",
+      "吉田",
+      "何井(半)"
+    ],
+    "exhibition": "1_春季展_前期",
+    "notes": {
+      "am": "館内消毒、郵便なし",
+      "pm": "館内消毒"
+    },
+    "visitors": [
+      {
+        "code": "C：学生",
+        "category": "学生",
+        "discount": null,
+        "count": 2
+      }
+    ],
+    "visitors_total": 2,
+    "cumulative_excluding_free": 84,
+    "cumulative_including_free": 89,
+    "sales": []
+  },
+  {
+    "date": "2024-04-05",
+    "day_of_week": "日",
+    "weather": "晴れ曇り",
+    "staff": [
+      "副館長",
+      "向井",
+      "御堂"
+    ],
+    "exhibition": "1_春季展_前期",
+    "notes": {
+      "am": "AM ・ 館内消毒\nその他)・水道ご使用量等のお知らせ\n10:45 ・ 洋画室村山塊多正面廻り.照明取り替えて頂く\n`庭の一隅`の案内を洋画室にも置いておけました. (受付と洋画室)",
+      "pm": "PM\n14:00 ・ 外国人女性2名来館.英語のリーフレット1枚差し上げる.\n15:00 ・ JWマリオットホテル 遠矢様館長宛に来館される 副館長にお伝えし研究室へお通しする (1600頃お帰りになる)\n・郵便なし\n・館内消毒"
+    },
+    "visitors": [
+      {
+        "code": "A：一般",
+        "category": "一般",
+        "discount": null,
+        "count": 3
+      },
+      {
+        "code": "A：一般",
+        "category": "一般（割引）",
+        "discount": null,
+        "count": 1
+      }
+    ],
+    "visitors_total": 4,
+    "cumulative_excluding_free": 43,
+    "cumulative_including_free": 45,
+    "sales": []
+  },
+  {
+    "date": "2024-04-07",
+    "day_of_week": "火",
+    "weather": "曇り雨",
+    "staff": [
+      "吉田",
+      "御堂"
+    ],
+    "exhibition": "1_春季展_前期",
+    "notes": {
+      "am": "AM ・館内 消毒\n10:05 ・今日は開館されていますかとの問い合せ有\n郵便)・きょうと視覚文化振興財団\nメール)・SBI証券\n・黒川古文化研究所\nその他)・大阪ガスご使用量のお知らせ",
+      "pm": "PM 郵便) SMBC日興証券 (2通)\n・三菱UFJモルガンスタンレー証券 (4通)\nメール)・白山市松任中川一政記念美術館\n・館内 消毒\n※ 日本画展示室、湿度が上がってきたので、ガラスコップ下げました。"
+    },
+    "visitors": [
+      {
+        "code": "A：一般",
+        "category": "一般",
+        "discount": null,
+        "count": 1
+      },
+      {
+        "code": "A：一般",
+        "category": "一般",
+        "discount": null,
+        "count": 1
+      },
+      {
+        "code": "A：一般",
+        "category": "一般（割引）",
+        "discount": "JAF",
+        "count": 1
+      },
+      {
+        "code": "B：シニア",
+        "category": "シニア",
+        "discount": null,
+        "count": 1
+      },
+      {
+        "code": "B：シニア",
+        "category": "シニア（割引）",
+        "discount": "JAF",
+        "count": 1
+      },
+      {
+        "code": "D：小中学生",
+        "category": "小中学生",
+        "discount": null,
+        "count": 2
+      }
+    ],
+    "visitors_total": 7,
+    "cumulative_excluding_free": 50,
+    "cumulative_including_free": 52,
+    "sales": [
+      {
+        "code": "P：絵葉書",
+        "name": "絵葉書（＠100円）",
+        "count": 4
+      }
+    ]
+  },
+  {
+    "date": "2024-04-08",
+    "day_of_week": "水",
+    "weather": "晴",
+    "staff": [
+      "館長",
+      "中垣"
+    ],
+    "exhibition": "1_春季展_前期",
+    "notes": {
+      "am": "館内消毒\n芦屋市立美術博物館\n洋画室「古銅器」と「ヴァイオリン」の間の電球取替\n10:00 学園南自治会 ヒロシマ様 来館\nアートフェスタについて館長とお話しされる。\n7/9(土)～7/15(日) 開催予定",
+      "pm": "13:25 三菱UFJ証券様 2名 来館\n研究室へお通しする。\n郵便) SMBC日興証券 (株)\n大阪中之島美術館\n(株) CO3\n練馬区立美術館\n館内消毒"
+    },
+    "visitors": [
+      {
+        "code": "A：一般",
+        "category": "一般",
+        "discount": null,
+        "count": 3
+      },
+      {
+        "code": "B：シニア",
+        "category": "シニア",
+        "discount": null,
+        "count": 1
+      }
+    ],
+    "visitors_total": 4,
+    "cumulative_excluding_free": 54,
+    "cumulative_including_free": 56,
+    "sales": [
+      {
+        "code": "P：絵葉書",
+        "name": "絵葉書",
+        "count": 4
+      },
+      {
+        "code": "P：その他",
+        "name": "長谷川・駒井",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "date": "2024-04-09",
+    "day_of_week": "木",
+    "weather": "曇",
+    "staff": [
+      "副館長",
+      "御堂",
+      "吉田",
+      "中垣",
+      "キタガワ"
+    ],
+    "exhibition": "1_春季展_前期",
+    "notes": {
+      "am": "館内 消毒\n10:20頃・吉田さんと中垣時代マンドリンクラブのご友人3名\n招待券にて来館される。副館長へお渡しする（12:15頃お帰りになる）\n郵便)\n三菱UFJモルガン・スタンレー証券 (封書2通・ハガキ1通)\n有限会社シンシステムデザイン\n11:25 ・読売新聞 奈良支部 キタガワ様より\n展覧会 春季展後期の掲載についてtel有\n副館長にお繋ぎする",
+      "pm": "何かやってますが来館されましたがすぐに帰られました、\n郵便なし\n館内 消毒"
+    },
+    "visitors": [
+      {
+        "code": "A：一般",
+        "category": "一般",
+        "discount": null,
+        "count": 1
+      },
+      {
+        "code": "B：シニア",
+        "category": "シニア",
+        "discount": null,
+        "count": 4
+      },
+      {
+        "code": "F：招待券",
+        "category": "招待券",
+        "discount": null,
+        "count": 3
+      }
+    ],
+    "visitors_total": 8,
+    "cumulative_excluding_free": 59,
+    "cumulative_including_free": 64,
+    "sales": [
+      {
+        "code": "P：書籍",
+        "name": "入江満光",
+        "count": 1
+      },
+      {
+        "code": "P：書籍",
+        "name": "村上華山",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "date": "2024-04-12",
+    "day_of_week": "日",
+    "weather": "晴",
+    "staff": [
+      "副館長",
+      "御堂"
+    ],
+    "exhibition": "1_春季展_前期",
+    "notes": {
+      "am": "館内消毒。ヤマト運輸 (ネコポス) ・アイマート株式会社。11:00 ・お客様より展覧会予定用紙を頂きたいとのこと１枚差し上げる。",
+      "pm": "ネコポス) ・日本きもの美術館。館内消毒"
+    },
+    "visitors": [
+      {
+        "code": "A：一般",
+        "category": "一般",
+        "discount": null,
+        "count": 2
+      },
+      {
+        "code": "A：一般",
+        "category": "一般（割引）",
+        "discount": "JAF",
+        "count": 1
+      },
+      {
+        "code": "A：一般",
+        "category": "一般（割引）",
+        "discount": "朝の会",
+        "count": 1
+      },
+      {
+        "code": "B：シニア",
+        "category": "シニア",
+        "discount": null,
+        "count": 1
+      }
+    ],
+    "visitors_total": 5,
+    "cumulative_excluding_free": 89,
+    "cumulative_including_free": 94,
+    "sales": [
+      {
+        "code": "P：絵葉書",
+        "name": "絵葉書（＠100円）",
+        "count": 11
+      },
+      {
+        "code": "P：図録",
+        "name": "図録",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "date": "2024-04-22",
+    "day_of_week": "水",
+    "weather": "曇",
+    "staff": [
+      "館長",
+      "中垣"
+    ],
+    "exhibition": "1_春季展_前期",
+    "notes": {
+      "am": "館内消毒\n郵便なし",
+      "pm": "PM 13:30 日興証券様 1名 渉外館・研究室へお通しする.\n14:15頃 お帰りになられる\nアジア系のお客様 日本画室のたたみに上がり、座談されていたので降りて頂くよう、お伝えする。\n（度々海外のお客様が上がられるので、英語での表記があると良いかもしれません）\n郵便なし\n館内消毒"
+    },
+    "visitors": [
+      {
+        "code": "A：一般",
+        "category": "一般",
+        "discount": null,
+        "count": 4
+      },
+      {
+        "code": "B：シニア",
+        "category": "シニア",
+        "discount": null,
+        "count": 1
+      }
+    ],
+    "visitors_total": 5,
+    "cumulative_excluding_free": 97,
+    "cumulative_including_free": 102,
+    "sales": []
+  },
+  {
+    "date": "2024-04-24",
+    "day_of_week": "金",
+    "weather": "曇",
+    "staff": [
+      "館長",
+      "中垣"
+    ],
+    "exhibition": "1_春季展_前期",
+    "notes": {
+      "am": "館内消毒、郵便なし",
+      "pm": "13:40 学園前自治会ヒロシマ様ご来館、館長にご挨拶頂き、アートフェスタの資料をお持ち下さる。\n14:30 よく来られるご年配の男性。いつも「ひよまるカード」をご提示下さいます。このカードは庚辰市に居住する70才以上に発行されるカードで、バス代の優遇、文化施設への無料割引サービスがあります。（大和文華館・松伯美術館は割引対象）「このカード使えるかな？」といつもおっしゃるので、シニア料金で対応しています。（くつ・スリッパのぬぎすて。5分で帰られます）\n(メモ) 朝日友の会、帝塚山大学現代生活学部居住空間デザイン学科"
+    },
+    "visitors": [
+      {
+        "code": "A：一般",
+        "category": "一般",
+        "discount": null,
+        "count": 1
+      },
+      {
+        "code": "A：一般",
+        "category": "一般（割引）",
+        "discount": "HP",
+        "count": 2
+      },
+      {
+        "code": "A：一般",
+        "category": "一般（割引）",
+        "discount": "JAF",
+        "count": 1
+      },
+      {
+        "code": "B：シニア",
+        "category": "シニア",
+        "discount": null,
+        "count": 5
+      },
+      {
+        "code": "C：学生",
+        "category": "学生",
+        "discount": null,
+        "count": 1
+      }
+    ],
+    "visitors_total": 10,
+    "cumulative_excluding_free": 109,
+    "cumulative_including_free": 114,
+    "sales": [
+      {
+        "code": "P：絵葉書",
+        "name": "絵葉書（＠100円）",
+        "count": 6
+      }
+    ]
+  },
+  {
+    "date": "2024-04-25",
+    "day_of_week": "土",
+    "weather": "晴れ/曇り",
+    "staff": [
+      "吉田",
+      "何井",
+      "中垣"
+    ],
+    "exhibition": "1_春季展_前期",
+    "notes": {
+      "am": "館内消毒、郵便なし",
+      "pm": "郵便なし、館内消毒"
+    },
+    "visitors": [
+      {
+        "code": "B：シニア",
+        "category": "シニア",
+        "discount": null,
+        "count": 1
+      }
+    ],
+    "visitors_total": 1,
+    "cumulative_excluding_free": 110,
+    "cumulative_including_free": 115,
+    "sales": []
+  },
+  {
+    "date": "2024-04-28",
+    "day_of_week": "火",
+    "weather": "晴",
+    "staff": [
+      "吉田",
+      "御堂",
+      "中垣",
+      "副館長"
+    ],
+    "exhibition": "1_春季展_前期",
+    "notes": {
+      "am": "(大和文華館臨時休館)電気設備点検のため P.S. 中垣さんご提案ありがとうございます。(4/22 談) 明日からGWが始まります。海外のお客様も見込まれます。ざっくりですが、館内注意事項の英語表記しました。後日副館長が手直ししてくださいます。(茶室、ラウンジ、受付の３つ) よしだ 以前からこのような事はよくありました。受付の方、後回しにしていてすみません。早めにとりあえずございました ④ ＋ Ⓗ",
+      "pm": "※ チケット販売 お客様(一般 or シニア 微妙なかんじのとこ)の対応について接客経験の長い御堂さんにおたずねしてみました。少々失敗をしながらも、たどりついたご自身の答えは、先が「いらっしゃいませ。一般の方でしたら 600円です」とそうそう。一般でしたら そのように支払われますし、シニアでしたら「シニアです」と言われるのでお客様が嫌な思いをさせずに済むようです。Let's try it !! ありがとうごさいます ④ よしだ 12:50 ・吉田さんからお聞きはせた中野材葉 フォレストアヤギーのお知り合い女性３名入館される。(一般 1, 学生 2) 吉田さんにお伝えする"
+    },
+    "visitors": [
+      {
+        "code": "A：一般",
+        "category": "一般",
+        "discount": null,
+        "count": 4
+      },
+      {
+        "code": "A：一般",
+        "category": "一般",
+        "discount": null,
+        "count": 1
+      },
+      {
+        "code": "A：一般",
+        "category": "一般（割引）",
+        "discount": "JAF",
+        "count": 3
+      },
+      {
+        "code": "C：学生",
+        "category": "学生",
+        "discount": null,
+        "count": 2
+      }
+    ],
+    "visitors_total": 10,
+    "cumulative_excluding_free": 126,
+    "cumulative_including_free": 131,
+    "sales": [
+      {
+        "code": "P：絵葉書",
+        "name": "絵葉書（＠100円）",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "date": "2024-04-29",
+    "day_of_week": "水",
+    "weather": "曇",
+    "staff": [
+      "館長",
+      "中垣"
+    ],
+    "exhibition": "1_春季展_前期",
+    "notes": {
+      "am": "AM ・館内消毒\n・郵便なし\n10:20 ・ホテルグランヴィア京都 ハナミズ様よりTELあり。館長へお繋ぎする。",
+      "pm": "PM ・領収書1枚発行する． 山口様: 30周年作品展 ¥200-\n・郵便なし\n・館内消毒"
+    },
+    "visitors": [
+      {
+        "code": "A：一般",
+        "category": "一般",
+        "discount": null,
+        "count": 3
+      },
+      {
+        "code": "A：一般",
+        "category": "一般（割引）",
+        "discount": "HP",
+        "count": 1
+      },
+      {
+        "code": "B：シニア",
+        "category": "シニア（割引）",
+        "discount": "JAF",
+        "count": 3
+      },
+      {
+        "code": "B：シニア",
+        "category": "シニア",
+        "discount": null,
+        "count": 1
+      },
+      {
+        "code": "C：学生",
+        "category": "学生（割引）",
+        "discount": "HP",
+        "count": 1
+      }
+    ],
+    "visitors_total": 9,
+    "cumulative_excluding_free": 135,
+    "cumulative_including_free": 140,
+    "sales": [
+      {
+        "code": "P：図録",
+        "name": "30周年作品展図録",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "date": "2024-04-30",
+    "day_of_week": "木",
+    "weather": "雨のち曇り",
+    "staff": [
+      "副館長",
+      "御堂"
+    ],
+    "exhibition": "1_春季展_前期",
+    "notes": {
+      "am": "9:40: 開館前にお客様来館される。入館して頂く。 館内消毒。 郵便なし。",
+      "pm": "14:40: 副館長が受付プレハブ（カメラ）を手直しして下さいました。 郵便: 株式会社SBI証券、大阪芸術大学博物館。 メール: 横尾忠則現代美術館。 15:40: 富士フィルムB1原良カワグチ様よりネットワークの注意喚起について館長宛に現在、副館長へお繋ぎする。 館内消毒。 幼児2名来館。"
+    },
+    "visitors": [
+      {
+        "code": "A：一般",
+        "category": "一般",
+        "discount": null,
+        "count": 1
+      },
+      {
+        "code": "A：一般",
+        "category": "一般",
+        "discount": null,
+        "count": 2
+      },
+      {
+        "code": "A：一般",
+        "category": "一般（割引）",
+        "discount": null,
+        "count": 1
+      },
+      {
+        "code": "B：シニア",
+        "category": "シニア",
+        "discount": null,
+        "count": 1
+      }
+    ],
+    "visitors_total": 5,
+    "cumulative_excluding_free": 140,
+    "cumulative_including_free": 145,
+    "sales": []
+  },
+  {
+    "date": "2026-04-10",
+    "day_of_week": "金",
+    "weather": null,
+    "staff": [
+      "館長",
+      "中垣"
+    ],
+    "exhibition": "1_春季展_前期",
+    "notes": {
+      "am": "お客様より10時から20名来館しますとTELあり。大型バスにて。館長に二封頂く。館内消毒。ネコポス) Shinwa Auction (株)。10:00 韓国民画協会様22名来館 (韓国の方)。団体割引にて入館。領収書発行 無記名 500x22 = 11,000円 (ツアー会社名 JTP)。ならまちで開催中の「韓国民画協会展示会2026」に出席されている方がお客様の中にいらっしゃるのこと。「金魚県立美術館が休館中だったため急遽の来館になったが、展示内容がお客様に合っていて良かったとのことでした。ポスター1枚ご希望があり、特別に300円で販売。11:00頃 お帰りになられる。",
+      "pm": "郵便) SMBC日興証券 2通。令和8年経済センサス-活動調査実施事務局。ウエル) 関西古書研究会・事務局。館内消毒。"
+    },
+    "visitors": [
+      {
+        "code": "A：一般",
+        "category": "一般",
+        "discount": null,
+        "count": 1
+      },
+      {
+        "code": "A：一般",
+        "category": "一般（割引）",
+        "discount": null,
+        "count": 22
+      }
+    ],
+    "visitors_total": 23,
+    "cumulative_excluding_free": 82,
+    "cumulative_including_free": 87,
+    "sales": [
+      {
+        "code": "P：ポスター",
+        "name": "ポスター",
+        "count": 1
+      }
+    ]
+  }
+]
