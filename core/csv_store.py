@@ -4,6 +4,7 @@
 """
 
 import os
+import re
 from datetime import datetime
 from pathlib import Path
 
@@ -21,6 +22,20 @@ DATA_DIR = ROOT / "data"
 
 def _now_iso() -> str:
     return datetime.now().astimezone().isoformat(timespec="seconds")
+
+
+def _normalize_date(v: str) -> str:
+    """2026/5/1 や 5/1/2026 など各種形式を YYYY-MM-DD に統一"""
+    v = str(v).strip()
+    if re.match(r"^\d{4}-\d{2}-\d{2}$", v):
+        return v
+    m = re.match(r"^(\d{4})[/.](\d{1,2})[/.](\d{1,2})$", v)
+    if m:
+        return f"{m.group(1)}-{int(m.group(2)):02d}-{int(m.group(3)):02d}"
+    try:
+        return pd.to_datetime(v).strftime("%Y-%m-%d")
+    except Exception:
+        return v
 
 
 def _use_local() -> bool:
@@ -48,7 +63,10 @@ def _read_local(name: str, cols: list[str]) -> pd.DataFrame:
         for col in cols:
             if col not in df.columns:
                 df[col] = ""
-        return df[cols]
+        df = df[cols]
+        if "date" in df.columns:
+            df["date"] = df["date"].apply(_normalize_date)
+        return df
     except Exception:
         return pd.DataFrame(columns=cols)
 
@@ -90,7 +108,10 @@ def _read_gsheet(sheet_name: str, cols: list[str]) -> pd.DataFrame:
         for col in cols:
             if col not in df.columns:
                 df[col] = ""
-        return df[cols]
+        df = df[cols]
+        if "date" in df.columns:
+            df["date"] = df["date"].apply(_normalize_date)
+        return df
     except Exception as e:
         st.error(f"スプレッドシートの読み込みに失敗しました: {e}")
         return pd.DataFrame(columns=cols)
