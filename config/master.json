@@ -1,0 +1,61 @@
+{
+  "exhibitions": [
+    "1_春季展_前期",
+    "2_春季展_後期",
+    "3_所蔵名作展_夏",
+    "4_秋季展_前期",
+    "5_秋季展_後期",
+    "6_所蔵名作展_冬"
+  ],
+  "visitor_categories": [
+    { "code": "A：一般",    "category": "一般",             "price": 600 },
+    { "code": "A：一般",    "category": "一般（割引）",      "price": 500 },
+    { "code": "A：一般",    "category": "一般（特別優待）",  "price": 400 },
+    { "code": "B：シニア",  "category": "シニア",           "price": 500 },
+    { "code": "B：シニア",  "category": "シニア（割引）",    "price": 400 },
+    { "code": "B：シニア",  "category": "シニア（特別優待）","price": 300 },
+    { "code": "C：学生",    "category": "学生",             "price": 500 },
+    { "code": "C：学生",    "category": "学生（割引）",      "price": 400 },
+    { "code": "C：学生",    "category": "学生（特別優待）",  "price": 300 },
+    { "code": "C：学生",    "category": "学生（無料）",      "price": 0   },
+    { "code": "D：小中学生","category": "小中学生",          "price": 250 },
+    { "code": "D：小中学生","category": "小中学生（割引）",  "price": 200 },
+    { "code": "D：小中学生","category": "小中学生（無料）",  "price": 0   },
+    { "code": "E：身障者",  "category": "身障者",           "price": 300 },
+    { "code": "F：招待券",  "category": "招待券",           "price": 0   },
+    { "code": "Z：その他",  "category": "その他",           "price": 0   }
+  ],
+  "discounts": [
+    "HP",
+    "優待割引",
+    "特別優待割引",
+    "JAF",
+    "朝日友の会",
+    "リロクラブ",
+    "奈良ファンクラブ",
+    "アートフェスタ",
+    "団体",
+    "その他",
+    "コンサート",
+    "まほろばパス"
+  ],
+  "merchandise": [
+    { "code": "Q：図録",   "name": "作品選",                "price": 2000 },
+    { "code": "Q：図録",   "name": "長谷川潔・駒井哲郎",   "price": 300  },
+    { "code": "Q：図録",   "name": "村上華岳展",            "price": 1000 },
+    { "code": "Q：図録",   "name": "須田国太郎・鳥海青児展","price": 1000 },
+    { "code": "Q：図録",   "name": "入江波光展",            "price": 1000 },
+    { "code": "Q：図録",   "name": "村上華岳・須田国太郎展","price": 1000 },
+    { "code": "P：絵葉書", "name": "絵葉書（＠100円）",     "price": 100  },
+    { "code": "P：絵葉書", "name": "絵葉書（＠50円）",      "price": 50   }
+  ],
+  "staff": [
+    "館長",
+    "副館長",
+    "吉田",
+    "御堂",
+    "中垣",
+    "文",
+    "向井"
+  ]
+}
