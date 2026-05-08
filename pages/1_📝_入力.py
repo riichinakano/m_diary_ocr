@@ -70,13 +70,27 @@ if visitor_cats:
         if st.button("追加", key="btn_add_v", use_container_width=True):
             vc   = visitor_cats[v_cat_idx]
             disc = "" if v_disc_idx == 0 else discounts_all[v_disc_idx - 1]
-            st.session_state.visitors.append({
-                "code":     vc["code"],
-                "category": vc["category"],
-                "discount": disc,
-                "count":    int(v_count),
-            })
-            st.rerun()
+            
+            # category と discount の整合性チェック
+            needs_discount = ("（割引）" in vc["category"]
+                              or "（特別優待）" in vc["category"])
+            if needs_discount and not disc:
+                st.error(
+                    f"「{vc['category']}」を選択した場合は、割引種別を選んでください"
+                )
+            else:
+                if not needs_discount and disc:
+                    st.warning(
+                        f"「{vc['category']}」は割引なしの分類ですが、"
+                        f"割引「{disc}」が選択されています"
+                    )
+                st.session_state.visitors.append({
+                    "code":     vc["code"],
+                    "category": vc["category"],
+                    "discount": disc,
+                    "count":    int(v_count),
+                })
+                st.rerun()
 
 # 入館者リスト
 v_price_map = {(vc["code"], vc["category"]): int(vc.get("price", 0)) for vc in visitor_cats}
@@ -169,9 +183,9 @@ st.divider()
 
 def _do_save(v_rows: list, s_rows: list) -> None:
     if v_rows:
-        csv_store.upsert_visits(DATA_DIR, v_rows)
+        csv_store.upsert_visits(v_rows)
     if s_rows:
-        csv_store.upsert_sales(DATA_DIR, s_rows)
+        csv_store.upsert_sales(s_rows)
     st.session_state.visitors.clear()
     st.session_state.sales.clear()
     for _k in ("confirm_overwrite", "_pending_v", "_pending_s", "_dups_v", "_dups_s"):
@@ -188,8 +202,8 @@ if not st.session_state.get("confirm_overwrite"):
             s_rows = [{**s, "date": date_str, "exhibition": exhibition}
                       for s in st.session_state.sales]
 
-            v_dups = csv_store.find_visit_duplicates(DATA_DIR, v_rows)
-            s_dups = csv_store.find_sale_duplicates(DATA_DIR, s_rows)
+            v_dups = csv_store.find_visit_duplicates(v_rows)
+            s_dups = csv_store.find_sale_duplicates(s_rows)
 
             if v_dups or s_dups:
                 st.session_state.confirm_overwrite = True

@@ -29,6 +29,7 @@ def _save(data: dict) -> None:
 with st.expander("🎨 展覧会リスト", expanded=True):
     exhibitions: list[str] = list(master.get("exhibitions", []))
     updated_exh: list[str] = []
+    delete_idx: int | None = None
 
     for i, exh in enumerate(exhibitions):
         c1, c2 = st.columns([6, 1])
@@ -38,10 +39,14 @@ with st.expander("🎨 展覧会リスト", expanded=True):
         )
         updated_exh.append(val)
         if c2.button("削除", key=f"del_exh_{i}"):
-            exhibitions.pop(i)
-            master["exhibitions"] = exhibitions
-            _save(master)
-            st.rerun()
+            delete_idx = i
+
+    if delete_idx is not None:
+        new_list = [e.strip() for j, e in enumerate(updated_exh)
+                    if j != delete_idx and e.strip()]
+        master["exhibitions"] = new_list
+        _save(master)
+        st.rerun()
 
     st.markdown("---")
     c_new, c_add = st.columns([6, 1])
@@ -51,12 +56,13 @@ with st.expander("🎨 展覧会リスト", expanded=True):
     )
     if c_add.button("追加", key="btn_add_exh"):
         trimmed = new_exh.strip()
-        if trimmed and trimmed not in exhibitions:
-            exhibitions.append(trimmed)
-            master["exhibitions"] = exhibitions
+        if trimmed and trimmed not in updated_exh:
+            new_list = [e.strip() for e in updated_exh if e.strip()]
+            new_list.append(trimmed)
+            master["exhibitions"] = new_list
             _save(master)
             st.rerun()
-        elif trimmed in exhibitions:
+        elif trimmed in updated_exh:
             st.warning("既に登録されています")
 
     if st.button("展覧会リストを保存", key="save_exh_btn"):
@@ -68,6 +74,7 @@ with st.expander("🛍️ 物販リスト"):
     st.caption("コード・品名・単価（円）を編集できます")
     merch_list: list[dict] = list(master.get("merchandise", []))
     updated_merch: list[dict] = []
+    delete_idx: int | None = None
 
     for i, m in enumerate(merch_list):
         c1, c2, c3, c4 = st.columns([2, 3, 1, 1])
@@ -84,12 +91,20 @@ with st.expander("🛍️ 物販リスト"):
             min_value=0, step=10, format="%d",
             label_visibility="collapsed", key=f"m_price_{i}",
         )
-        updated_merch.append({"code": code_val, "name": name_val, "price": int(price_val)})
+        updated_merch.append({
+            "code": code_val.strip(),
+            "name": name_val.strip(),
+            "price": int(price_val),
+        })
         if c4.button("削除", key=f"del_merch_{i}"):
-            merch_list.pop(i)
-            master["merchandise"] = merch_list
-            _save(master)
-            st.rerun()
+            delete_idx = i
+
+    if delete_idx is not None:
+        new_list = [m for j, m in enumerate(updated_merch)
+                    if j != delete_idx and m["code"] and m["name"]]
+        master["merchandise"] = new_list
+        _save(master)
+        st.rerun()
 
     st.markdown("---")
     c1, c2, c3, c4 = st.columns([2, 3, 1, 1])
@@ -107,8 +122,13 @@ with st.expander("🛍️ 物販リスト"):
     )
     if c4.button("追加", key="btn_add_merch"):
         if new_m_code.strip() and new_m_name.strip():
-            merch_list.append({"code": new_m_code.strip(), "name": new_m_name.strip(), "price": int(new_m_price)})
-            master["merchandise"] = merch_list
+            new_list = [m for m in updated_merch if m["code"] and m["name"]]
+            new_list.append({
+                "code":  new_m_code.strip(),
+                "name":  new_m_name.strip(),
+                "price": int(new_m_price),
+            })
+            master["merchandise"] = new_list
             _save(master)
             st.rerun()
         else:
@@ -116,7 +136,7 @@ with st.expander("🛍️ 物販リスト"):
 
     if st.button("物販リストを保存", key="save_merch_btn"):
         master["merchandise"] = [
-            m for m in updated_merch if m["code"].strip() and m["name"].strip()
+            m for m in updated_merch if m["code"] and m["name"]
         ]
         _save(master)
 
@@ -124,6 +144,7 @@ with st.expander("🛍️ 物販リスト"):
 with st.expander("💰 割引種別リスト"):
     discounts: list[str] = list(master.get("discounts", []))
     updated_disc: list[str] = []
+    delete_idx: int | None = None
 
     for i, d in enumerate(discounts):
         c1, c2 = st.columns([6, 1])
@@ -133,10 +154,14 @@ with st.expander("💰 割引種別リスト"):
         )
         updated_disc.append(val)
         if c2.button("削除", key=f"del_disc_{i}"):
-            discounts.pop(i)
-            master["discounts"] = discounts
-            _save(master)
-            st.rerun()
+            delete_idx = i
+
+    if delete_idx is not None:
+        new_list = [d.strip() for j, d in enumerate(updated_disc)
+                    if j != delete_idx and d.strip()]
+        master["discounts"] = new_list
+        _save(master)
+        st.rerun()
 
     st.markdown("---")
     c_new, c_add = st.columns([6, 1])
@@ -146,12 +171,13 @@ with st.expander("💰 割引種別リスト"):
     )
     if c_add.button("追加", key="btn_add_disc"):
         trimmed = new_disc.strip()
-        if trimmed and trimmed not in discounts:
-            discounts.append(trimmed)
-            master["discounts"] = discounts
+        if trimmed and trimmed not in updated_disc:
+            new_list = [d.strip() for d in updated_disc if d.strip()]
+            new_list.append(trimmed)
+            master["discounts"] = new_list
             _save(master)
             st.rerun()
-        elif trimmed in discounts:
+        elif trimmed in updated_disc:
             st.warning("既に登録されています")
 
     if st.button("割引リストを保存", key="save_disc_btn"):
@@ -163,6 +189,7 @@ with st.expander("👤 入館者分類・料金リスト"):
     st.caption("コード・分類名・料金（円）を編集できます")
     cats: list[dict] = list(master.get("visitor_categories", []))
     updated_cats: list[dict] = []
+    delete_idx: int | None = None
 
     for i, vc in enumerate(cats):
         c1, c2, c3, c4 = st.columns([2, 3, 1, 1])
@@ -179,12 +206,20 @@ with st.expander("👤 入館者分類・料金リスト"):
             min_value=0, step=10, format="%d",
             label_visibility="collapsed", key=f"vc_price_{i}",
         )
-        updated_cats.append({"code": code_val, "category": cat_val, "price": int(price_val)})
+        updated_cats.append({
+            "code":     code_val.strip(),
+            "category": cat_val.strip(),
+            "price":    int(price_val),
+        })
         if c4.button("削除", key=f"del_vc_{i}"):
-            cats.pop(i)
-            master["visitor_categories"] = cats
-            _save(master)
-            st.rerun()
+            delete_idx = i
+
+    if delete_idx is not None:
+        new_list = [vc for j, vc in enumerate(updated_cats)
+                    if j != delete_idx and vc["code"] and vc["category"]]
+        master["visitor_categories"] = new_list
+        _save(master)
+        st.rerun()
 
     st.markdown("---")
     c1, c2, c3, c4 = st.columns([2, 3, 1, 1])
@@ -202,8 +237,13 @@ with st.expander("👤 入館者分類・料金リスト"):
     )
     if c4.button("追加", key="btn_add_vc"):
         if new_vc_code.strip() and new_vc_cat.strip():
-            cats.append({"code": new_vc_code.strip(), "category": new_vc_cat.strip(), "price": int(new_vc_price)})
-            master["visitor_categories"] = cats
+            new_list = [vc for vc in updated_cats if vc["code"] and vc["category"]]
+            new_list.append({
+                "code":     new_vc_code.strip(),
+                "category": new_vc_cat.strip(),
+                "price":    int(new_vc_price),
+            })
+            master["visitor_categories"] = new_list
             _save(master)
             st.rerun()
         else:
@@ -211,6 +251,6 @@ with st.expander("👤 入館者分類・料金リスト"):
 
     if st.button("入館者分類リストを保存", key="save_vc_btn"):
         master["visitor_categories"] = [
-            vc for vc in updated_cats if vc["code"].strip() and vc["category"].strip()
+            vc for vc in updated_cats if vc["code"] and vc["category"]
         ]
         _save(master)

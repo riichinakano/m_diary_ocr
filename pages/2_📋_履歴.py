@@ -49,8 +49,8 @@ s_price_map = {
 }
 
 # ── CSV読み込み・月フィルタ・ソート ──────────────────────────
-df_v = csv_store.read_visits(DATA_DIR)
-df_s = csv_store.read_sales(DATA_DIR)
+df_v = csv_store.read_visits()
+df_s = csv_store.read_sales()
 
 def _filter_month(df: pd.DataFrame, month: str) -> pd.DataFrame:
     return df[df["date"].str.startswith(month)].sort_values("date", ascending=sort_asc).reset_index(drop=True)
@@ -81,11 +81,15 @@ if not df_s_m.empty:
     ds = df_s_m.copy()
     ds["count"] = pd.to_numeric(ds["count"], errors="coerce").fillna(0).astype(int)
     ds["unit_price"] = ds.apply(lambda r: s_price_map.get((r["code"], r["name"]), 0), axis=1)
-    postcard_count = int(ds[ds["code"] == "P：絵葉書"]["count"].sum())
-    catalog_count  = int(ds[ds["code"] == "Q：図録"]["count"].sum())
     merch_rev      = int((ds["count"] * ds["unit_price"]).sum())
+
+    # codeごとの販売数集計（動的）
+    by_code: dict[str, int] = (
+        ds.groupby("code")["count"].sum().astype(int).to_dict()
+    )
 else:
-    postcard_count = catalog_count = merch_rev = 0
+    by_code = {}
+    merch_rev = 0
 
 grand_rev = admission_rev + merch_rev
 
@@ -94,10 +98,14 @@ c1.metric("有料入場者",           f"{paid_visitors:,} 人")
 c2.metric("入場者合計（無料含む）", f"{total_visitors:,} 人")
 c3.metric("入館料売上",           f"¥{admission_rev:,}")
 
-c4, c5, c6 = st.columns(3)
-c4.metric("絵葉書販売数",  f"{postcard_count:,} 枚")
-c5.metric("図録販売数",    f"{catalog_count:,} 冊")
-c6.metric("物販売上",      f"¥{merch_rev:,}")
+if by_code:
+    cols_m = st.columns(min(len(by_code) + 1, 4))  # 最大4カラム
+    for idx, (code, cnt) in enumerate(by_code.items()):
+        cols_m[idx % len(cols_m)].metric(f"{code} 販売数", f"{cnt:,}")
+    # 最後に物販売上
+    cols_m[-1].metric("物販売上", f"¥{merch_rev:,}")
+else:
+    st.metric("物販売上", f"¥{merch_rev:,}")
 
 st.info(f"**{sel_month} 売上合計：¥{grand_rev:,}**　（入館料 ¥{admission_rev:,} ＋ 物販 ¥{merch_rev:,}）")
 
@@ -107,24 +115,35 @@ st.divider()
 if data_type in ("入館者", "両方"):
     st.subheader("👤 入館者")
     if not df_v_m.empty:
-        hc = st.columns([2, 3, 2, 1, 2, 1])
-        for col, label in zip(hc, ["日付", "分類", "割引", "人数", "金額", ""]):
-            col.markdown(f"**{label}**")
-        st.markdown("---")
-        for _, row in df_v_m.iterrows():
-            cnt        = int(row["count"]) if str(row["count"]).isdigit() else 0
-            unit_price = v_price_map.get((row["code"], row["category"]), 0)
-            subtotal   = cnt * unit_price
-            c1, c2, c3, c4, c5, c6 = st.columns([2, 3, 2, 1, 2, 1])
-            c1.write(row["date"])
-            c2.write(row["category"])
-            c3.write(row["discount"] if row["discount"] else "—")
-            c4.write(f"{row['count']} 人")
-            c5.write(f"¥{subtotal:,}")
-            btn_key = f"del_hv_{row['date']}_{row['code']}_{row['category']}_{row['discount']}"
-            if c6.button("削除", key=btn_key):
+        # 表示用データフレームの作成
+        disp_v = df_v_m.copy()
+        disp_v["人数"] = pd.to_numeric(disp_v["count"], errors="coerce").fillna(0).astype(int)
+        disp_v["単価"] = disp_v.apply(lambda r: v_price_map.get((r["code"], r["category"]), 0), axis=1)
+        disp_v["金額"] = disp_v["人数"] * disp_v["単価"]
+        disp_v["割引"] = disp_v["discount"].fillna("").apply(lambda x: x if x else "—")
+        
+        disp_v = disp_v.rename(columns={"date": "日付", "category": "分類"})
+        
+        st.dataframe(
+            disp_v[["日付", "分類", "割引", "人数", "金額"]],
+            use_container_width=True,
+            hide_index=True,
+            column_config={
+                "金額": st.column_config.NumberColumn("金額", format="¥%d")
+            }
+        )
+
+        with st.expander("🗑️ 入館者データの削除"):
+            opts_v = [
+                f"{row['date']} | {row['category']} | {row['discount'] if row['discount'] else '—'} | {row['count']}人"
+                for _, row in df_v_m.iterrows()
+            ]
+            del_sel_v = st.selectbox("削除するデータを選択", opts_v, key="del_v_sel")
+            if st.button("削除実行", key="del_v_btn"):
+                idx = opts_v.index(del_sel_v)
+                row = df_v_m.iloc[idx]
                 csv_store.delete_visit(
-                    DATA_DIR, row["date"], row["code"], row["category"], row["discount"]
+                    row["date"], row["code"], row["category"], row["discount"]
                 )
                 st.rerun()
     else:
@@ -134,22 +153,32 @@ if data_type in ("入館者", "両方"):
 if data_type in ("物販", "両方"):
     st.subheader("🛍️ 物販")
     if not df_s_m.empty:
-        hc = st.columns([2, 4, 1, 2, 1])
-        for col, label in zip(hc, ["日付", "商品名", "販売数", "金額", ""]):
-            col.markdown(f"**{label}**")
-        st.markdown("---")
-        for _, row in df_s_m.iterrows():
-            cnt        = int(row["count"]) if str(row["count"]).isdigit() else 0
-            unit_price = s_price_map.get((row["code"], row["name"]), 0)
-            subtotal   = cnt * unit_price
-            c1, c2, c3, c4, c5 = st.columns([2, 4, 1, 2, 1])
-            c1.write(row["date"])
-            c2.write(row["name"])
-            c3.write(f"{row['count']} 個")
-            c4.write(f"¥{subtotal:,}")
-            btn_key = f"del_hs_{row['date']}_{row['code']}_{row['name']}"
-            if c5.button("削除", key=btn_key):
-                csv_store.delete_sale(DATA_DIR, row["date"], row["code"], row["name"])
+        disp_s = df_s_m.copy()
+        disp_s["販売数"] = pd.to_numeric(disp_s["count"], errors="coerce").fillna(0).astype(int)
+        disp_s["単価"] = disp_s.apply(lambda r: s_price_map.get((r["code"], r["name"]), 0), axis=1)
+        disp_s["金額"] = disp_s["販売数"] * disp_s["単価"]
+        
+        disp_s = disp_s.rename(columns={"date": "日付", "name": "商品名"})
+        
+        st.dataframe(
+            disp_s[["日付", "商品名", "販売数", "金額"]],
+            use_container_width=True,
+            hide_index=True,
+            column_config={
+                "金額": st.column_config.NumberColumn("金額", format="¥%d")
+            }
+        )
+
+        with st.expander("🗑️ 物販データの削除"):
+            opts_s = [
+                f"{row['date']} | {row['name']} | {row['count']}個"
+                for _, row in df_s_m.iterrows()
+            ]
+            del_sel_s = st.selectbox("削除するデータを選択", opts_s, key="del_s_sel")
+            if st.button("削除実行", key="del_s_btn"):
+                idx = opts_s.index(del_sel_s)
+                row = df_s_m.iloc[idx]
+                csv_store.delete_sale(row["date"], row["code"], row["name"])
                 st.rerun()
     else:
         st.info(f"{sel_month} の物販データはありません")
