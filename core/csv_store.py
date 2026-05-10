@@ -90,7 +90,7 @@ def _get_worksheet(sheet_name: str):
             "https://www.googleapis.com/auth/drive",
         ],
     )
-    client = gspread.authorize(creds)
+    client = gspread.Client(auth=creds)
     doc = client.open_by_url(st.secrets["spreadsheet_url"])
     try:
         return doc.worksheet(sheet_name)
@@ -146,10 +146,12 @@ def _write(name: str, df: pd.DataFrame, cols: list[str]) -> None:
 
 # ──────────────────────── 読み込み ────────────────────────────
 
+@st.cache_data(ttl=60)
 def read_visits() -> pd.DataFrame:
     return _read("visits", VISITS_COLS)
 
 
+@st.cache_data(ttl=60)
 def read_sales() -> pd.DataFrame:
     return _read("sales", SALES_COLS)
 
@@ -226,6 +228,7 @@ def upsert_visits(rows: list[dict]) -> None:
         df = pd.concat([df, pd.DataFrame(new_rows)], ignore_index=True).fillna("")
 
     _write("visits", df, VISITS_COLS)
+    read_visits.clear()
 
 
 def upsert_sales(rows: list[dict]) -> None:
@@ -259,6 +262,7 @@ def upsert_sales(rows: list[dict]) -> None:
         df = pd.concat([df, pd.DataFrame(new_rows)], ignore_index=True).fillna("")
 
     _write("sales", df, SALES_COLS)
+    read_sales.clear()
 
 
 # ──────────────────────── 削除 ────────────────────────────────
@@ -272,6 +276,7 @@ def delete_visit(date: str, code: str, category: str, discount: str) -> None:
         (df["discount"] == (discount or ""))
     )
     _write("visits", df[~mask].reset_index(drop=True), VISITS_COLS)
+    read_visits.clear()
 
 
 def delete_sale(date: str, code: str, name: str) -> None:
@@ -282,3 +287,4 @@ def delete_sale(date: str, code: str, name: str) -> None:
         (df["name"] == name)
     )
     _write("sales", df[~mask].reset_index(drop=True), SALES_COLS)
+    read_sales.clear()
