@@ -90,7 +90,7 @@ def _get_worksheet(sheet_name: str):
             "https://www.googleapis.com/auth/drive",
         ],
     )
-    client = gspread.Client(auth=creds)
+    client = gspread.authorize(creds)
     doc = client.open_by_url(st.secrets["spreadsheet_url"])
     try:
         return doc.worksheet(sheet_name)
@@ -99,22 +99,28 @@ def _get_worksheet(sheet_name: str):
 
 
 def _read_gsheet(sheet_name: str, cols: list[str]) -> pd.DataFrame:
-    try:
-        sheet   = _get_worksheet(sheet_name)
-        records = sheet.get_all_records()
-        if not records:
-            return pd.DataFrame(columns=cols)
-        df = pd.DataFrame(records, dtype=str).fillna("")
-        for col in cols:
-            if col not in df.columns:
-                df[col] = ""
-        df = df[cols]
-        if "date" in df.columns:
-            df["date"] = df["date"].apply(_normalize_date)
-        return df
-    except Exception as e:
-        st.error(f"スプレッドシートの読み込みに失敗しました: {e}")
-        return pd.DataFrame(columns=cols)
+    import time
+    last_exc: Exception = RuntimeError("不明なエラー")
+    for attempt in range(3):
+        try:
+            sheet   = _get_worksheet(sheet_name)
+            records = sheet.get_all_records()
+            if not records:
+                return pd.DataFrame(columns=cols)
+            df = pd.DataFrame(records, dtype=str).fillna("")
+            for col in cols:
+                if col not in df.columns:
+                    df[col] = ""
+            df = df[cols]
+            if "date" in df.columns:
+                df["date"] = df["date"].apply(_normalize_date)
+            return df
+        except Exception as e:
+            last_exc = e
+            if attempt < 2:
+                time.sleep(1)
+    # 例外を raise することで @st.cache_data に失敗結果をキャッシュさせない
+    raise last_exc
 
 
 def _write_gsheet(sheet_name: str, df: pd.DataFrame, cols: list[str]) -> None:

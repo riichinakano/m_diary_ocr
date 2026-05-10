@@ -16,7 +16,12 @@ DATA_DIR   = ROOT / "data"
 CONFIG_DIR = ROOT / "config"
 
 # ══════════════════════════════════════════════════════════════
-st.header("📋 入力履歴")
+_hcol1, _hcol2 = st.columns([4, 1])
+_hcol1.header("📋 入力履歴")
+if _hcol2.button("🔄 更新", use_container_width=True):
+    csv_store.read_visits.clear()
+    csv_store.read_sales.clear()
+    st.rerun()
 # ══════════════════════════════════════════════════════════════
 
 # ── 月選択・表示オプション ────────────────────────────────────
@@ -49,8 +54,13 @@ s_price_map = {
 }
 
 # ── CSV読み込み・月フィルタ・ソート ──────────────────────────
-df_v = csv_store.read_visits()
-df_s = csv_store.read_sales()
+try:
+    df_v = csv_store.read_visits()
+    df_s = csv_store.read_sales()
+except Exception as _e:
+    st.error(f"スプレッドシートの読み込みに失敗しました: {_e}")
+    st.info("しばらく待ってから「🔄 更新」ボタンを押してください。Google Sheets API が一時的に不安定な場合があります。")
+    st.stop()
 
 def _filter_month(df: pd.DataFrame, month: str) -> pd.DataFrame:
     return df[df["date"].str.startswith(month)].sort_values("date", ascending=sort_asc).reset_index(drop=True)
