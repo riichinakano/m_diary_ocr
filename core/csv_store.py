@@ -294,3 +294,18 @@ def delete_sale(date: str, code: str, name: str) -> None:
     )
     _write("sales", df[~mask].reset_index(drop=True), SALES_COLS)
     read_sales.clear()
+
+
+def delete_by_date(date: str) -> tuple[int, int]:
+    """指定日のすべての入館者・物販データを削除する。削除件数を (visits, sales) で返す。"""
+    df_v = read_visits()
+    df_s = read_sales()
+    mask_v = df_v["date"] == date
+    mask_s = df_s["date"] == date
+    n_v = int(mask_v.sum())
+    n_s = int(mask_s.sum())
+    _write("visits", df_v[~mask_v].reset_index(drop=True), VISITS_COLS)
+    _write("sales",  df_s[~mask_s].reset_index(drop=True), SALES_COLS)
+    read_visits.clear()
+    read_sales.clear()
+    return n_v, n_s

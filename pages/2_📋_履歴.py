@@ -195,6 +195,28 @@ if data_type in ("物販", "両方"):
 
 st.divider()
 
+# ── 日付一括削除 ──────────────────────────────────────────────
+with st.expander("🗑️ 日付一括削除（入力日を間違えた場合など）"):
+    all_dates = sorted(
+        set(df_v["date"].tolist() + df_s["date"].tolist()),
+        reverse=True,
+    )
+    if all_dates:
+        del_date = st.selectbox("削除する日付", all_dates, key="bulk_del_date")
+        n_v_preview = int((df_v["date"] == del_date).sum())
+        n_s_preview = int((df_s["date"] == del_date).sum())
+        st.warning(
+            f"**{del_date}** のデータをすべて削除します：入館者 {n_v_preview} 件・物販 {n_s_preview} 件"
+        )
+        if st.button("この日付のデータをすべて削除", type="primary", key="bulk_del_btn"):
+            n_v, n_s = csv_store.delete_by_date(del_date)
+            st.success(f"{del_date} の入館者 {n_v} 件・物販 {n_s} 件を削除しました")
+            st.rerun()
+    else:
+        st.info("削除できるデータがありません")
+
+st.divider()
+
 # ── CSVダウンロード ───────────────────────────────────────────
 st.subheader("💾 CSVダウンロード")
 month_tag = sel_month.replace("-", "")
