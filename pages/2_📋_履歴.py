@@ -121,6 +121,72 @@ st.info(f"**{sel_month} 売上合計：¥{grand_rev:,}**　（入館料 ¥{admis
 
 st.divider()
 
+# ── 期間集計 ──────────────────────────────────────────────────
+with st.expander("📊 期間集計（期間を指定して集計）"):
+    col_s, col_e = st.columns(2)
+    with col_s:
+        range_start = st.date_input("開始日", value=today.replace(day=1), key="range_start")
+    with col_e:
+        range_end = st.date_input("終了日", value=today, key="range_end")
+
+    if range_start <= range_end:
+        start_str = str(range_start)
+        end_str   = str(range_end)
+
+        df_v_r = df_v[(df_v["date"] >= start_str) & (df_v["date"] <= end_str)]
+        df_s_r = df_s[(df_s["date"] >= start_str) & (df_s["date"] <= end_str)]
+
+        if not df_v_r.empty:
+            dv_r = df_v_r.copy()
+            dv_r["count"] = pd.to_numeric(dv_r["count"], errors="coerce").fillna(0).astype(int)
+            dv_r["unit_price"] = dv_r.apply(
+                lambda r: v_price_map.get((r["code"], r["category"]), 0), axis=1
+            )
+            total_visitors_r  = int(dv_r["count"].sum())
+            paid_visitors_r   = int(dv_r[dv_r["unit_price"] > 0]["count"].sum())
+            admission_rev_r   = int((dv_r["count"] * dv_r["unit_price"]).sum())
+        else:
+            total_visitors_r = paid_visitors_r = admission_rev_r = 0
+
+        if not df_s_r.empty:
+            ds_r = df_s_r.copy()
+            ds_r["count"] = pd.to_numeric(ds_r["count"], errors="coerce").fillna(0).astype(int)
+            ds_r["unit_price"] = ds_r.apply(
+                lambda r: s_price_map.get((r["code"], r["name"]), 0), axis=1
+            )
+            merch_rev_r  = int((ds_r["count"] * ds_r["unit_price"]).sum())
+            by_code_r: dict[str, int] = (
+                ds_r.groupby("code")["count"].sum().astype(int).to_dict()
+            )
+        else:
+            merch_rev_r = 0
+            by_code_r   = {}
+
+        grand_rev_r = admission_rev_r + merch_rev_r
+
+        st.markdown(f"**{range_start} 〜 {range_end}**")
+        rc1, rc2, rc3 = st.columns(3)
+        rc1.metric("有料入場者",            f"{paid_visitors_r:,} 人")
+        rc2.metric("入場者合計（無料含む）", f"{total_visitors_r:,} 人")
+        rc3.metric("入館料売上",             f"¥{admission_rev_r:,}")
+
+        if by_code_r:
+            rcols = st.columns(min(len(by_code_r) + 1, 4))
+            for idx, (code, cnt) in enumerate(by_code_r.items()):
+                rcols[idx % len(rcols)].metric(f"{code} 販売数", f"{cnt:,}")
+            rcols[-1].metric("物販売上", f"¥{merch_rev_r:,}")
+        else:
+            st.metric("物販売上", f"¥{merch_rev_r:,}")
+
+        st.info(
+            f"**{range_start} 〜 {range_end} 売上合計：¥{grand_rev_r:,}**"
+            f"　（入館料 ¥{admission_rev_r:,} ＋ 物販 ¥{merch_rev_r:,}）"
+        )
+    else:
+        st.warning("開始日は終了日以前の日付を指定してください")
+
+st.divider()
+
 # ── 入館者 ────────────────────────────────────────────────────
 if data_type in ("入館者", "両方"):
     st.subheader("👤 入館者")
